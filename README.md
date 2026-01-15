@@ -3,15 +3,15 @@
 ## Formatos UNICODE optimizados para LinkedIn
 
 <div style="text-align: center">
-![LinkStyle Logo](./assets/img/Linkstyle.ico)
+    <img width="150" src="./assets/img/Linkstyle.ico" alt="Preview" />
 </div>
 
 **LinkStyle** es una herramienta web ligera y segura diseñada para aplicar formatos de texto (negrita, cursiva, subrayado, monospace) en publicaciones de LinkedIn de forma profesional.
 
 👉 **[Prueba la aplicación aquí](https://jagmolar.github.io/LinkStyle/)**
 
-<div style="text-align: center">
-![LinkStyle Preview](./assets/img/preview.png)
+<div style="align: center">
+    <img width="90%" src="./assets/img/preview.png" alt="Preview" />
 </div>
 
 ---
