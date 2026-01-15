@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Modifica el formato para tu texto en LinkedIn: Negrita, Cursiva, Subrayado, Tachado, Monospaciado.">
+    <meta name="author" content="Juan Antonio García Muelas">
+    <meta name="keywords" content="LinkedIn, Negrita, Cursiva, Subrayado, Tachado, Monospaciado, formato, JagMolar">
+    <title>LinkStyle</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="shortcut icon" href="/assets/img/Linkstyle.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="./assets/js/editors.js"></script>
+    
+</head>
+<body class="bg-body-light" cz-shortcut-listen="true">
+    <header class="py-4 text-center">
+            <div class="container-fluid">
+                <h1 class="display-5 fw-bold text-primary"><img src="/assets/img/Linkstyle.jpg" width="100" alt="logo linkstyle" srcset="">LinkStyle</h1>
+                <p class="lead text-muted">Dale estilo a tus publicaciones de forma profesional y segura.</p>
+            </div>
+    </header>
+    <div class="container">
+        <main>
+            <h1 class="text-center text-primary">LinkStyle: Formatos Unicode optimizados para LinkedIn</h1>
+            <br>
+            <h2 class="text-primary">Edita tus textos para LinkedIn</h2>
+            <p>
+                Desde aquí puedes dar distintos tipos de estilos a tus textos y destacar tu contenido a publicar en LinkedIn.
+                Será cuestión de copiar y pegar!.
+            </p>
+            <div>
+                <textarea class="form-control form-control-lg" name="texto-base" placeholder="Escribe tu texto" aria-label="escribe tu texto" 
+                id="texto-base" cols="3"></textarea>
+                <!-- <input class="form-control form-control-lg" type="text" placeholder="Escribe tu texto" aria-label="escribe tu texto" id="texto-base"> -->
+                <small class="text-body-secondary">Los caracteres con tildes o la 'ñ' no tienen sustituto en UNICODE, por lo que se verán sin formato.</small>
+                <span id="char-counter" class="badge bg-primary">0 / 150</span>
+            </div>
+            <div class="p-2">
+                <div class="row gy-3">
+                    <div class="col-md-6">
+                        <label for="" class="form-label ms-2"><strong>Texto negrita</strong></label>
+                        <div class="input-group">                    
+                            <input type="text" class="form-control " readonly placeholder="texto negrita" aria-label="texto negrita" aria-describedby="button-negrita">
+                            <button class="btn btn-copy btn-outline-primary" type="button" id="button-negrita">Copy</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="" class="form-label ms-2"><em>Texto en cursiva</em></label>
+                        <div class="input-group">
+                            <input type="text" class="form-control ms-2" readonly placeholder="texto cursiva" aria-label="texto cursiva" aria-describedby="button-cursiva">
+                            <button class="btn btn-copy btn-outline-primary" type="button" id="button-cursiva">Copy</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row gy-3 mt-2">
+                    <div class="col-md-6">
+                        <label for="" class="form-label ms-2"><strong><em>Texto negrita y cursiva</em></strong></label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" readonly placeholder="texto negrita-cursiva" aria-label="texto negrita-cursiva" aria-describedby="button-negrita-cursiva">
+                            <button class="btn btn-copy btn-outline-primary" type="button" id="button-negrita-cursiva">Copy</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="" class="form-label ms-2"><strong><u>Texto subrayado y negrita</u></strong></label>
+                        <div class="input-group">
+                            <input type="text" class="form-control ms-2" readonly placeholder="texto subrayado y negrita" aria-label="texto subrayado y negrita" aria-describedby="button-subrayado-negrita">
+                            <button class="btn btn-copy btn-outline-primary" type="button" id="button-subrayado-negrita">Copy</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row gy-3 mt-2">
+                    <div class="col-md-6">
+                        <label for="" class="form-label ms-2"><u>Texto subrayado</u></label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" readonly placeholder="texto subrayado" aria-label="texto subrayado" aria-describedby="button-subrayado">
+                            <button class="btn btn-copy btn-outline-primary" type="button" id="button-subrayado">Copy</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="" class="form-label ms-2"><del>Texto tachado</del></label>
+                        <div class="input-group">
+                            <input type="text" class="form-control ms-2" readonly placeholder="texto tachado" aria-label="texto tachado" aria-describedby="button-tachado">
+                            <button class="btn btn-copy btn-outline-primary" type="button" id="button-tachado">Copy</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row gy-3 mt-2">
+                    <div class="col-md-6">
+                        <label for="" class="form-label ms-2"><code>Texto Monospaciado</code></label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" readonly placeholder="texto monospace" aria-label="texto monospace" aria-describedby="button-monospace">
+                            <button class="btn btn-copy btn-outline-primary" type="button" id="button-monospace">Copy</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="" class="form-label ms-2">Texto invertido</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control ms-2" readonly placeholder="texto invertido" aria-label="texto invertido" aria-describedby="button-invertido">
+                            <button class="btn btn-copy btn-outline-primary" type="button" id="button-invertido">Copy</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row gy-3 mt-2 mb-2">
+                    <div>
+                        <h2 class="text-primary">¿Porqué utilizar esta herramienta para dar estilos en LinkedIn?</h2>
+                        <p>
+                            LinkedIn nos permite publicaciones de hasta 3000 caracteres, podemos incluir emojis, pero no permite resaltar de forma nativa, textos con formatos. 
+                            Por ello, si necesitas resaltar el contenido en tu feed, puedes ayudarte desde esta misma página. Para ello, hemos dispuesto hasta 150 caracteres, 
+                            evitando que así que se utilice de manera extensiva y pierda el valor del resaltado.
+                        </p>
+                    </div>
+                    <div>
+                        <h2 class="text-primary">¿Cómo funciona?</h2>
+                        <p>
+                            Solo tenemos que introducir los textos que deseamos resaltar en el cuadro superior y automáticamente, tendrás a mano el texto
+                            modificado para copiar y pegar en tu publicación.
+                        </p>
+                        <p>
+                            Solo utilizamos un poco de JavaScript para sustituir el texto por caracteres <strong>UNICODE</strong>, de forma transparente. Al ser una sustitución,
+                            no es perfecto, pero se consigue un gran resultado.
+                            Puedes revisar todo el proyecto desde el enlace de <a href="https://github.com/JagMolar/LinkStyle" target="_blank" rel="noopener noreferrer">GitHub</a> 
+                             (Y si quieres, clonarlo para uso en local).
+                        </p>
+                    </div>
+                    <div>
+                        <h2 class="text-primary">¿Quieres algún consejo para sobresalir en LinkedIn?</h2>
+                        <p>
+                            Ante todo, recuerda que debes publicar contenido relevante. No todo es Titulares con negrita y emojis 😁.
+                        </p>
+                        <p>
+                            El buscador interno de LinkedIn puede tener dificultades para indexar estas palabras. 
+                            Si escribes "Estrategia" en negrita Unicode, es posible que no aparezcas cuando alguien busque la palabra "Estrategia" normal.
+                        </p>
+                        <p>
+                            Además, los lectores de pantalla para personas con discapacidad visual no leen estas letras como "Hola". 
+                            A menudo las leen como "Símbolo matemático negrita H, Símbolo matemático negrita O...". 
+                            Esto hace que tu contenido sea <strong>invisible para personas ciegas</strong>.
+                        </p>
+                        <p>
+                            <strong class="text-primary">Mi consejo:</strong> Utiliza estos resaltados en titulares o elementos que no influyan en SEO.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-4 mt-4 border-top"> 
+            <div class="col-md-4 d-flex align-items-center">
+                <a href="https://juanantoniogarciamuelas.es" target="_blank" rel="noopener noreferrer" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1" aria-label="Bootstrap"> 
+                    <img src="/assets/img/prelogoBlue.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    JagMolar
+                </a> 
+                <span class="mb-3 mb-md-0 text-body-secondary">© 2026</span> 
+            </div> 
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex"> 
+                <li class="ms-3">
+                    <a class="text-body-secondary" href="https://github.com/jagmolar" aria-label="github">
+                        <img src="/assets/img/github-logo_icon-icons.com_73546.png" alt="github" width="24" height="24" aria-hidden="true" srcset="">
+                    </a>
+                </li> 
+                <li class="ms-3">
+                    <a class="text-body-secondary" href="https://www.linkedin.com/in/juanantoniogarciamuelas/" aria-label="LinkedIn">
+                        <img src="/assets/img/linkedin.png" alt="LinkedIn" width="24" height="24" aria-hidden="true" srcset="">
+                    </a>
+                </li> 
+            </ul> 
+        </footer>
+    </div>
+</body>
+</html>

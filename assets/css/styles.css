@@ -1,0 +1,30 @@
+/* Los estilos generales están directamente aplicados desde Bootstrap
+por lo que solo se retocan algunos estilos a forzar.
+ */
+
+ /*Suavizamos el pulsado de los botones de copia*/
+ .btn-copy {
+    transition: all 0.3s ease;
+}
+
+/* Evitar que el texto de los inputs se vea cortado si es largo */
+input[readonly] {
+    background-color: #f8f9fa !important;
+    cursor: default;
+}
+
+/* Forzamos una tipografía que gestione bien los caracteres combinados */
+#texto-base, 
+input[readonly] {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-variant-ligatures: contextual;
+    font-feature-settings: "kern" 1;
+    font-size: 1.1rem;
+    text-rendering: optimizeLegibility;
+    line-height: 1.6;
+    padding-bottom: 5px; /* Damos espacio para que el subrayado respire */
+}
+
+input, textarea {
+    border-color: #5697d9 !important;
+}
