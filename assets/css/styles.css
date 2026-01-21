@@ -2,6 +2,7 @@
 por lo que solo se retocan algunos estilos a forzar.
  */
 
+
  /*Suavizamos el pulsado de los botones de copia*/
  .btn-copy {
     transition: all 0.3s ease;
@@ -27,4 +28,27 @@ input[readonly] {
 
 input, textarea {
     border-color: #5697d9 !important;
+}
+
+/*MODO NOCHE-DIA*/
+[data-bs-theme="light"] body {
+    background-color: #f9f9f9 !important;
+ }
+ 
+/* Estilos específicos para cuando el tema es oscuro */
+[data-bs-theme="dark"] .input-group-text {
+    background-color: #2b3035;
+    color: #0077b5 !important; /* El azul de tu marca resalta más aquí */
+    border-color: #0d6efd !important;
+}
+
+[data-bs-theme="dark"] input[readonly] {
+    background-color: #212529 !important;
+    color: #494949 !important;
+    border-color: #0d6efd !important;
+}
+
+/* Efecto suave de transición */
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
 }

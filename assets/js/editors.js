@@ -137,3 +137,47 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicializar todos los botones
     Object.values(fields).forEach(configurarBoton);
 });
+
+/* Modo noche dia*/ 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const htmlElement = document.documentElement;
+    
+    // 1. Inicializar el Tooltip de Bootstrap
+    const tooltip = new bootstrap.Tooltip(themeToggle);
+
+    const aplicarTema = (tema) => {
+        htmlElement.setAttribute('data-bs-theme', tema);
+        if (themeIcon) {
+            const nuevoTexto = tema === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro';
+            themeIcon.innerText = tema === 'dark' ? '☀️' : '🌙';
+            // Actualizar el contenido del tooltip dinámicamente
+        themeToggle.setAttribute('data-bs-original-title', nuevoTexto); 
+        tooltip.setContent({ '.tooltip-inner': nuevoTexto });
+        }
+        localStorage.setItem('linkstyle-theme', tema);
+        console.log("Tema aplicado:", tema); // Para depuración
+    };
+
+    // Al cargar la página
+    const temaGuardado = localStorage.getItem('linkstyle-theme') || 
+                         (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    
+    aplicarTema(temaGuardado);
+
+    // Evento de clic
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const temaActual = htmlElement.getAttribute('data-bs-theme');
+            const nuevoTema = temaActual === 'dark' ? 'light' : 'dark';
+            aplicarTema(nuevoTema);
+
+        // Ocultar el tooltip al hacer click para que no se quede pegado
+        tooltip.hide();
+        });
+    } else {
+        console.error("No se encontró el botón con ID 'theme-toggle'");
+    }
+});
