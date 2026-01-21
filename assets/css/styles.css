@@ -32,7 +32,7 @@ input, textarea {
 
 /*MODO NOCHE-DIA*/
 [data-bs-theme="light"] body {
-    --bs-body-bg:#f9f9f9;
+    --bs-body-bg: #f9f9f9 !important;
  }
 
 /* Estilos específicos para cuando el tema es oscuro */
