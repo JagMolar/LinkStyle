@@ -32,9 +32,9 @@ input, textarea {
 
 /*MODO NOCHE-DIA*/
 [data-bs-theme="light"] body {
-    background-color: #f9f9f9 !important;
+    --bs-body-bg:#f9f9f9;
  }
- 
+
 /* Estilos específicos para cuando el tema es oscuro */
 [data-bs-theme="dark"] .input-group-text {
     background-color: #2b3035;
