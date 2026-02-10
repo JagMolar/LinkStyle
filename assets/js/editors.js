@@ -48,17 +48,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // 3. Función de transformación
+    const helpers = {
+        // Función para limpiar acentos y eñes completamente y homogeneizar textos
+        limpiar: (texto) => {
+            return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                        .replace(/ñ/g, "n").replace(/Ñ/g, "N");
+        }
+    };
+
     const transformadores = {
+        // Usamos Array.from() para manejar correctamente los caracteres Unicode de 32 bits
         mapeo: (texto, tipo) => {
             const origen = alfabetos.normal;
             const destino = Array.from(alfabetos[tipo]);
-            return texto.split('').map(char => {
+            const debeNormalizar = document.getElementById('switch-normalizar').checked;
+
+            // Si el usuario activó el switch, limpiamos el texto antes de empezar
+            const textoAProcesar = debeNormalizar ? helpers.limpiar(texto) : texto;
+
+            return Array.from(textoAProcesar).map(char => {
                 const i = origen.indexOf(char);
+                // Si el carácter está en nuestro alfabeto (A-Z, a-z), lo transformamos.
+                // Si no está (como una 'ó' o 'ñ' sin normalizar), lo devolvemos tal cual.
                 return i !== -1 ? destino[i] : char;
             }).join('');
         },
         tachado: (texto) => {
-            // Usamos el carácter \u0334
+            // Usamos el carácter \u0336 (Long Stroke Overlay)
             // Aplicamos normalize para ayudar al renderizado
             return texto.split('').map(char => char + '\u0334').join('').normalize('NFC');
         },
@@ -66,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const textoNegrita = transformadores.mapeo(texto, 'negrita');
         // Definimos las letras que tienen descendentes (en su versión normal)
         const conDescendentes = "gjpyqgGJPYQ"; 
-        const normal = alfabetos.normal;
+        // const normal = alfabetos.normal;
 
         return Array.from(textoNegrita).map((char, index) => {
             // Buscamos la letra original correspondiente para saber si tiene descendente
@@ -78,7 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return char + '\u0332'; // Para las demás, aplicamos el subrayado
         }).join('');
         },
-
         subrayado: (texto) => {
             const conDescendentes = "gjpyqgGJPYQ";
             return texto.split('').map(char => {
@@ -88,33 +103,64 @@ document.addEventListener('DOMContentLoaded', () => {
                 return char + '\u0332';
             }).join('');
         },
-
+        // Para Monospaciado: Mejor normalizar para evitar que se rompa la rejilla
+        monospace: (texto) => {
+            const limpio = helpers.normalizar(texto);
+            const origen = alfabetos.normal;
+            const destino = Array.from(alfabetos.monospace);
+            
+            return Array.from(limpio).map(char => {
+                const i = origen.indexOf(char);
+                return i !== -1 ? destino[i] : char;
+            }).join('');
+        },
+        // Motor para el texto Invertido
         voltear: (texto) => {
-            return texto.split('').map(char => alfabetos.invertido[char] || char).reverse().join('');
+            const debeNormalizar = document.getElementById('switch-normalizar').checked;
+            const textoAProcesar = debeNormalizar ? helpers.limpiar(texto) : texto;
+            
+            // const origen = alfabetos.normal;
+            // const destino = Array.from(alfabetos.invertido);
+
+            // En el invertido: primero mapeamos y luego giramos el array
+            return Array.from(textoAProcesar)
+                .map(char => alfabetos.invertido[char] || char)
+                .reverse()
+                .join('');
         }
     };
 
     // 4. Evento de escucha (Real-time)
-    base.addEventListener('input', () => {
+    const procesarTexto = () => {
         const val = base.value;
         const len = val.length;
 
-        // Actualizar contador
+        // --- Actualizar contadores ---
         counter.innerText = `${len} / 150`;
         counter.className = len > 120 ? 'badge bg-danger' : (len > 120 ? 'badge bg-warning text-dark' : 'badge bg-primary');
-        
+
+        // counterAuthor.innerText = `${len} / 3000`;
+        // counterAuthor.className = len > 2500 ? 'badge bg-danger' : (len > 2000 ? 'badge bg-warning text-dark' : 'badge bg-primary');
+
+        // Asignar inputs
         fields.negrita.input.value = transformadores.mapeo(val, 'negrita');
         fields.cursiva.input.value = transformadores.mapeo(val, 'cursiva');
         fields.negritaCursiva.input.value = transformadores.mapeo(val, 'negritaCursiva');
         
         // Tachado (U+0336) y Subrayado (U+0332)
-        fields.tachado.input.value = transformadores.tachado(val, '\u0334');
+        fields.tachado.input.value = transformadores.tachado(val, '\u0336');
         fields.subrayado.input.value = transformadores.subrayado(val, '\u0332');
         fields.subrayadoNegrita.input.value = transformadores.negritaSubrayado(val);
         
         fields.invertido.input.value = transformadores.voltear(val);
-        fields.monospace.input.value = transformadores.mapeo(val, 'monospace')
-    });
+        fields.monospace.input.value = transformadores.mapeo(val, 'monospace');
+    };
+
+        // Tu evento original (se queda igual de funcional)
+        base.addEventListener('input', procesarTexto);
+
+        // El nuevo evento para el switch (llama a la misma lógica)
+        document.getElementById('switch-normalizar').addEventListener('change', procesarTexto);
 
     // 5. Función para copiar al portapapeles
     const configurarBoton = (field) => {

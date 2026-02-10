@@ -1,9 +1,9 @@
 /* Los estilos generales están directamente aplicados desde Bootstrap
 por lo que solo se retocan algunos estilos a forzar.
  */
- :root {
+ /* :root {
     --bs-body-bg:#f9f9f9 !important;
- }
+ } */
 
  /*Suavizamos el pulsado de los botones de copia*/
  .btn-copy {
@@ -32,9 +32,17 @@ input, textarea {
     border-color: #5697d9 !important;
 }
 
+.illustrations {
+    border: solid 1px #0d6efd;
+    border-radius: var(--bs-border-radius);
+    width: 100%;
+    margin-bottom: 0%;
+}
+
 /*MODO NOCHE-DIA*/
 [data-bs-theme="light"] body {
-    background-color: var(--bs-body-bg);
+    /* background-color: var(--bs-body-bg); */
+    background-color: #f9f9f9 !important;
  }
 
 /* Estilos específicos para cuando el tema es oscuro */
