@@ -4,6 +4,8 @@ Aplicación de escritorio desarrollada en Python y PyQt6 para generar estilos de
 
 Basada en la herramienta web [LinkStyle de JagMolar](https://jagmolar.github.io/LinkStyle/).
 
+![](linkstyle-desktop.png)
+
 ---
 
 ## Características
