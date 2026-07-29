@@ -47,7 +47,13 @@ cd LinkStyle
 Ejecuta el archivo principal con Python 3:
 
 ```bash
-python3 EstiloLinkendin_v2.py
+python3 LinkStyle.py
+```
+
+La nueva versión contiene el *shebang* `#!/usr/bin/env python3` y se puede ejecutar directamente con un simple clic o desde la terminal:
+
+```bash
+.\LinkStyle.py
 ```
 
 ## Licencia y Créditos
