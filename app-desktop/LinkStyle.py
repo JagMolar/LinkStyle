@@ -1,5 +1,35 @@
 #!/usr/bin/env python3
 import sys
+import subprocess
+
+# --- COMPROBACIÓN DE DEPENDENCIAS ---
+try:
+    from PyQt6.QtWidgets import (
+        QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLabel,
+        QTextEdit, QLineEdit, QPushButton, QCheckBox, QGridLayout,
+        QScrollArea, QFrame, QMessageBox
+    )
+    from PyQt6.QtCore import Qt, QTimer
+    from PyQt6.QtGui import QDesktopServices
+    from PyQt6.QtCore import QUrl
+except ImportError:
+    msg = "Es necesario que disponga de PyQt6 para ejecutar esta aplicación.\n\nPuedes instalarlo en Debian con:\nsudo apt -y install python3-pyqt6"
+    
+    # Intentar mostrar una alerta gráfica nativa del sistema si se ejecuta desde entorno gráfico
+    try:
+        subprocess.run(["zenity", "--error", "--title=LinkStyle - Error de dependencias", "--text=" + msg], check=False)
+    except FileNotFoundError:
+        try:
+            subprocess.run(["kdialog", "--error", msg, "--title", "LinkStyle - Error de dependencias"], check=False)
+        except FileNotFoundError:
+            # Si no hay interfaz de diálogo del sistema, se muestra por consola
+            print(f"\n[ERROR] {msg}\n", file=sys.stderr)
+            
+    sys.exit(1)
+
+
+
+
 import unicodedata
 from PyQt6.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLabel,
