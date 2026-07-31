@@ -14,7 +14,9 @@
     <img width="90%" src="./assets/img/preview.png" alt="Preview" />
 </div>
 
+
 Si es lo que buscabas para dar formato a tus textos en redes, también puedes trabajar con su **versión de Escritorio** que puedes ver en los archivos del repo ⬆️.
+
 ---
 
 ## 🛡️ ¿Por qué LinkStyle?
